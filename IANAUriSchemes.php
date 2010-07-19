@@ -2,10 +2,10 @@
 
 class IANAUriSchemes{
 
-  const PERMANENT = "permanent";
-  const PROVISIONAL = "provisional";
-  const HISTORICAL = "historical";
-  const CUSTOM = "custom";
+  const PERMANENT = 1;
+  const PROVISIONAL = 2;
+  const HISTORICAL = 3;
+  const NOT_REGISTED = 0;
 
   static function getSchemeTypeFromUrl( $url ){
     $validScheme = preg_match("/^(\w[\w\.-]*)[:|\/]/", $url, $scheme );
@@ -109,16 +109,16 @@ class IANAUriSchemes{
     );
 
     if( in_array( $scheme, $PERMANENT_URI_SCHEMES ) ){
-      return PERMANENT;
+      return self::PERMANENT;
     }
 
     if( in_array( $scheme, $PROVISIONAL_URI_SCHEMES ) ){
-      return PROVISIONAL;
+      return self::PROVISIONAL;
     }
 
     if( in_array( $scheme, $HISTORICAL_URI_SCHEMES ) ){
-      return HISTORICAL;
+      return self::HISTORICAL;
     }
-    return CUSTOM;
+    return self::NOT_REGISTED;
   }
 }
